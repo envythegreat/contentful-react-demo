@@ -15,16 +15,11 @@ const Router = () => {
     if (token) {
       return DefaultRoute;
     } else {
-      return "/signin";
+      return "/";
     }
   };
 
   const routes = useRoutes([
-    {
-      path: "/",
-      index: true,
-      element: <Navigate replace to={getHomeRoute()} />,
-    },
     ...allRoutes,
   ]);
 

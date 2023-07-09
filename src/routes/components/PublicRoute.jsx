@@ -19,6 +19,5 @@ const PublicRoute = ({ children, route }) => {
   return <Suspense fallback={null}>{children}</Suspense>;
 };
 
-export default PublicRoute;
 
 export default PublicRoute;

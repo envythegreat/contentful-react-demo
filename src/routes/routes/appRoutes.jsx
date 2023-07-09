@@ -7,7 +7,8 @@ const AppRoutes = [
     path: "/",
     element: <Home />,
     meta: {
-      layout: "vertical",
+      layout: "BlankLayout",
+      publicRoute:true
     },
   },
 ];
