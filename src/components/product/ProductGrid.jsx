@@ -25,6 +25,8 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 3,
     ProductDiscount: 15,
+    ProductOnSale:false,
+    ProductNew:false,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
@@ -52,6 +54,8 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 3,
     ProductDiscount: 15,
+    ProductOnSale:true,
+    ProductNew:false,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
@@ -79,10 +83,13 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 4,
     ProductDiscount: 15,
+    ProductOnSale:false,
+    ProductNew:true,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
   },
+	
 ];
 
 const ProductGrid = () => {

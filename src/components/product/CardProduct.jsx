@@ -1,5 +1,7 @@
 import React from "react";
 import { HeartIcon, CartIcon, EyeIcon, StarIcon } from "../icons";
+
+
 const productAction = [
   {
     name: "wish",
@@ -15,8 +17,15 @@ const productAction = [
   },
 ];
 
+
 const CardProduct = ({ item }) => {
+
   const RATE_LIMIT = 5;
+  const ProductBadge = () => {
+    if(item.ProductNew) return <p className="showcase-badge angle pink">New</p>
+    if(item.ProductOnSale) return <p className="showcase-badge angle black">Sale</p>
+    if(item.ProductDiscount) return <p className="showcase-badge angle">{item.ProductDiscount} %</p>
+  }
 
   return (
     <div className="showcase">
@@ -27,8 +36,8 @@ const CardProduct = ({ item }) => {
           width="300"
           className="product-img"
         />
-
-        <p className="showcase-badge">15%</p>
+        <ProductBadge />
+        {/* <p className="showcase-badge">15%</p> */}
 
         <div className="showcase-actions">
           {productAction.map((item) => (
