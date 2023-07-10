@@ -1,5 +1,6 @@
 import React from "react";
-import { TopNavBar, MainNavBar } from "../../../components";
+import { TopNavBar, MainNavBar, Hero } from "../../components";
+
 const Home = () => {
   return (
     <>
@@ -7,6 +8,9 @@ const Home = () => {
         <TopNavBar />
         <MainNavBar />
       </header>
+      <main>
+        <Hero />
+      </main>
     </>
   );
 };
