@@ -1,11 +1,14 @@
-import React from 'react'
-
+import React from "react";
+import { TopNavBar, MainNavBar } from "../../../components";
 const Home = () => {
   return (
-    <div>
-      <p>Hellos World</p>
-    </div>
-  )
-}
+    <>
+      <header>
+        <TopNavBar />
+        <MainNavBar />
+      </header>
+    </>
+  );
+};
 
-export default Home
+export default Home;
