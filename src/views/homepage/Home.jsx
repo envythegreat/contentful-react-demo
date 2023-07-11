@@ -1,5 +1,5 @@
 import React from "react";
-import { TopNavBar, MainNavBar, Hero, ProductGrid } from "../../components";
+import { TopNavBar, MainNavBar, Hero, ProductGrid, Footer } from "../../components";
 
 const Home = () => {
   return (
@@ -12,6 +12,9 @@ const Home = () => {
         <Hero />
         <ProductGrid />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
