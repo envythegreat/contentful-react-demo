@@ -1,6 +1,7 @@
 // ** React Imports
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Footer, TopNavBar, MainNavBar } from "../components";
 
 const BlankLayout = () => {
   // ** States
@@ -17,7 +18,14 @@ const BlankLayout = () => {
 
   return (
     <>
+      <header>
+        <TopNavBar />
+        <MainNavBar />
+      </header>
       <Outlet />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

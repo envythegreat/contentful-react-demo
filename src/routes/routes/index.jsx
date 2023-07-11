@@ -63,10 +63,10 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
 
 const getRoutes = () => {
   const AllRoutes = [];
-  const layouts = ["BlankLayout"];
+  const layouts = ["blank"];
 
   layouts.forEach((layoutItem) => {
-    const LayoutRoutes = MergeLayoutRoutes(layoutItem, "BlankLayout");
+    const LayoutRoutes = MergeLayoutRoutes(layoutItem, "blank");
 
     AllRoutes.push({
       path: "/",
