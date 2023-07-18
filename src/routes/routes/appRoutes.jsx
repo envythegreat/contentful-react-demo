@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 const Home = lazy(() => import("../../views/homepage/Home"));
+const ProductDetails = lazy(() => import("../../views/app/ProductDetails"));
 
 const AppRoutes = [
   {
@@ -11,6 +12,14 @@ const AppRoutes = [
       publicRoute:true
     },
   },
+  {
+    path:'/product-details/:x',
+    element: <ProductDetails />,
+    meta: {
+      layout: "blank",
+      publicRoute: true
+    }
+  }
 ];
 
 export default AppRoutes;

@@ -95,7 +95,7 @@ const products = [
 const ProductGrid = () => {
   return (
     <div className="product-main">
-      <h2 className="title" style={{margin:'10px 50px'}}>Products</h2>
+      <h2 className="title" style={{margin:'10px 80px'}}>Products</h2>
       <div className="product-grid">
         {products.map((item) => (
           <CardProduct key={item.ProductId} item={item} />

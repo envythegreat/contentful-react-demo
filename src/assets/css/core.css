@@ -1307,7 +1307,7 @@
     #PRODUCT FEATURED
   \*-----------------------------------*/
   
-  .product-featured { margin-bottom: 30px; }
+  .product-featured { margin: 100px; }
   
   .product-featured .showcase-wrapper {
     display: -webkit-box;
@@ -1329,7 +1329,7 @@
   .product-featured .showcase-container {
     min-width: 100%;
     padding: 30px;
-    border: 1px solid var(--cultured);
+    /* border: 1px solid var(--cultured); */
     -webkit-border-radius: var(--border-radius-md);
             border-radius: var(--border-radius-md);
     scroll-snap-align: start;
@@ -1510,7 +1510,7 @@
     /* -ms-grid-columns: 1fr; */
     grid-template-columns: 1fr;
     gap: 25px;
-    padding: 10px 50px;
+    padding: 10px 80px;
   }
   
   .product-grid .showcase {

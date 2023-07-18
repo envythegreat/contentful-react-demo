@@ -108,17 +108,17 @@ const SiteMap = [
 const Footer = () => {
   return (
     <>
-      <div class="footer-nav">
-        <div class="container">
+      <div className="footer-nav">
+        <div className="container">
           {SiteMap.map((el, i) => (
-            <ul class="footer-nav-list" key={i}>
-              <li class="footer-nav-item">
-                <h2 class="nav-title">{el.title}</h2>
+            <ul className="footer-nav-list" key={i}>
+              <li className="footer-nav-item">
+                <h2 className="nav-title">{el.title}</h2>
               </li>
               {el.elem &&
                 el.elem.map((e, i) => (
-                  <li class="footer-nav-item" key={i+e.name}>
-                    <a href={e.path} class="footer-nav-link">
+                  <li className="footer-nav-item" key={i+e.name}>
+                    <a href={e.path} className="footer-nav-link">
                       {e.name}
                     </a>
                   </li>
@@ -128,9 +128,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div class="container">
-          <p class="copyright">
+      <div className="footer-bottom">
+        <div className="container">
+          <p className="copyright">
             Copyright all rights lorem epsum.
           </p>
         </div>
