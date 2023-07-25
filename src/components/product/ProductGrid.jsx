@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductImg1 from "../../assets/img/jacket-5.jpg";
 import CardProduct from "./CardProduct";
+import useContentful from "../../utility/useContentful";
+
 const products = [
   {
     ProductId: 1,
@@ -25,8 +27,8 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 3,
     ProductDiscount: 15,
-    ProductOnSale:false,
-    ProductNew:false,
+    ProductOnSale: false,
+    ProductNew: false,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
@@ -54,8 +56,8 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 3,
     ProductDiscount: 15,
-    ProductOnSale:true,
-    ProductNew:false,
+    ProductOnSale: true,
+    ProductNew: false,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
@@ -83,22 +85,31 @@ const products = [
     ProductOldPrice: 75,
     ProductRating: 4,
     ProductDiscount: 15,
-    ProductOnSale:false,
-    ProductNew:true,
+    ProductOnSale: false,
+    ProductNew: true,
     ProductCategory: "Lorem Jackson",
     ProductImages: ProductImg1,
     Ressources: [],
   },
-	
 ];
 
 const ProductGrid = () => {
+  const [data, setData] = useState([]);
+  const { getData } = useContentful();
+
+  useEffect(() => {
+    getData({ contentType: "sProductSfy", select: "fields" }).then((res) => res && setData(res));
+    console.log(data)
+  }, [getData, data]);
+
   return (
     <div className="product-main">
-      <h2 className="title" style={{margin:'10px 80px'}}>Products</h2>
+      <h2 className="title" style={{ margin: "10px 80px" }}>
+        Products
+      </h2>
       <div className="product-grid">
-        {products.map((item) => (
-          <CardProduct key={item.ProductId} item={item} />
+        {data.map((item) => (
+          <CardProduct key={item.sys.id} item={item.fields} />
         ))}
       </div>
     </div>

@@ -1,7 +1,19 @@
-import React from "react";
-import jacket from "../../assets/img/jacket-5.jpg";
+import React, { useState, useEffect } from "react";
 import { StarIcon } from "../../components/icons";
+import { useParams } from "react-router-dom";
+import useContentful from "../../utility/useContentful";
+
 const ProductDetails = () => {
+  const { slug } = useParams();
+  const [productDetails, setProductDetails] = useState();
+  const { getSingleItem } = useContentful();
+
+  useEffect(() => {
+    getSingleItem({ content_type: "sProductSfy", slug }).then(
+      (res) => res && setProductDetails(res)
+    );
+  }, []);
+  console.log("ss", productDetails);
   return (
     <>
       <div className="product-featured">
@@ -10,8 +22,8 @@ const ProductDetails = () => {
             <div className="showcase">
               <div className="showcase-banner">
                 <img
-                  src={jacket}
-                  alt="shampoo, conditioner & facewash packs"
+                  src={productDetails?.items[0].fields.image.fields.file?.url}
+                  alt={productDetails?.items[0].fields.image.fields.title}
                   className="showcase-img"
                 />
               </div>
@@ -27,19 +39,22 @@ const ProductDetails = () => {
 
                 <a href="#">
                   <h3 className="showcase-title">
-                    shampoo, conditioner & facewash packs
+                    {productDetails?.items[0].fields.title}
                   </h3>
                 </a>
 
                 <p className="showcase-desc">
-                  Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor dolor
-                  sit amet consectetur Lorem ipsum dolor
+                  {productDetails?.items[0].fields.category}
                 </p>
 
                 <div className="price-box">
-                  <p className="price">$150.00</p>
+                  <p className="price">
+                    {productDetails?.items[0].fields.price.ProductCurrentPrice}$
+                  </p>
 
-                  <del>$200.00</del>
+                  <del>
+                    {productDetails?.items[0].fields.price.ProductOldPrice}$
+                  </del>
                 </div>
 
                 <button className="add-cart-btn">add to cart</button>
@@ -90,13 +105,15 @@ const ProductDetails = () => {
         </div>
         <h2 className="title">Details</h2>
         <div className="showcase-content">
-          <p className="showcase-desc" style={{lineHeight:'30px'}}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi magni
-            dolore dolorem ipsum, impedit doloremque neque. Odit repudiandae
-            officiis quam quod soluta. Voluptate suscipit culpa expedita ipsum,
-            perspiciatis optio quidem? ipsum, impedit doloremque neque. Odit
-            repudiandae officiis quam quod soluta. Voluptate suscipit culpa
-            expedita ipsum, perspiciatis optio quidem uptate suscip
+          <p
+            className="showcase-desc"
+            style={{ lineHeight: "30px" }}
+            dangerouslySetInnerHTML={{
+              __html:
+                productDetails?.items[0].fields.description.content[0]
+                  .content[0].value,
+            }}
+          >
           </p>
         </div>
       </div>
@@ -105,3 +122,7 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+
+
+

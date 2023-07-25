@@ -1,5 +1,6 @@
 import React from "react";
 import { HeartIcon, CartIcon, EyeIcon, StarIcon } from "../icons";
+import { Link } from "react-router-dom";
 
 
 const productAction = [
@@ -22,17 +23,17 @@ const CardProduct = ({ item }) => {
 
   const RATE_LIMIT = 5;
   const ProductBadge = () => {
-    if(item.ProductNew) return <p className="showcase-badge angle pink">New</p>
-    if(item.ProductOnSale) return <p className="showcase-badge angle black">Sale</p>
-    if(item.ProductDiscount) return <p className="showcase-badge angle">{item.ProductDiscount} %</p>
+    if(item?.price?.ProductNew) return <p className="showcase-badge angle pink">New</p>
+    if(item?.price?.ProductOnSale) return <p className="showcase-badge angle black">Sale</p>
+    if(item?.price?.ProductDiscount) return <p className="showcase-badge angle">{item?.price?.ProductDiscount} %</p>
   }
 
   return (
     <div className="showcase">
       <div className="showcase-banner">
         <img
-          src={item.ProductImages}
-          alt="Mens Winter Leathers Jackets"
+          src={item?.image?.fields?.file?.url}
+          alt={item?.image?.fields?.title}
           width="300"
           className="product-img"
         />
@@ -50,32 +51,32 @@ const CardProduct = ({ item }) => {
 
       <div className="showcase-content">
         <a href="#" className="showcase-category">
-          {item.ProductCategory}
+          {item.category}
         </a>
 
-        <a href="#">
-          <h3 className="showcase-title">{item.ProductItemNameEN}</h3>
-        </a>
+        <Link to={`/product-details/${item.slug}`}>
+          <h3 className="showcase-title">{item.title}</h3>
+        </Link>
         {
           //rgb(246 163 85)
         }
         <div className="showcase-rating">
           {[...Array(RATE_LIMIT)].map((x, i) => {
-            if (item.ProductRating <= i) {
+            if (item.price.ProductRating <= i) {
               return (
-                <StarIcon width={16} height={16} />
+                <StarIcon width={16} height={16} key={i} />
               );
             } else {
               return (
-                <StarIcon fill={"rgb(246 163 85)"} width={16} height={16} />
+                <StarIcon fill={"rgb(246 163 85)"} width={16} height={16} key={i} />
               );
             }
           })}
         </div>
 
         <div className="price-box">
-          <p className="price">${item.ProductCurrentPrice}</p>
-          <del>${item.ProductOldPrice}</del>
+          <p className="price">${item.price.ProductCurrentPrice}</p>
+          <del>${item.price.ProductOldPrice}</del>
         </div>
       </div>
     </div>

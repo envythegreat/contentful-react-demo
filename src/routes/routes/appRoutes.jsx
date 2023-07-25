@@ -13,7 +13,7 @@ const AppRoutes = [
     },
   },
   {
-    path:'/product-details/:x',
+    path:'/product-details/:slug',
     element: <ProductDetails />,
     meta: {
       layout: "blank",
