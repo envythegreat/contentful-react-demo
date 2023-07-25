@@ -34,7 +34,7 @@ const CardProduct = ({ item }) => {
         <img
           src={item?.image?.fields?.file?.url}
           alt={item?.image?.fields?.title}
-          width="300"
+          
           className="product-img"
         />
         <ProductBadge />

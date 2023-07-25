@@ -1535,6 +1535,7 @@
     -webkit-transition: var(--transition-timing);
     -o-transition: var(--transition-timing);
     transition: var(--transition-timing);
+    padding: 30px;
   }
   
   .product-grid .product-img.default {
