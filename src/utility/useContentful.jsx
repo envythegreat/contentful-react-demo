@@ -15,6 +15,7 @@ const useContentful = () => {
         content_type: contentType,
         select: select,
       });
+      console.log(entries)
 			return entries.items;
     } catch (e) {
       throw e;

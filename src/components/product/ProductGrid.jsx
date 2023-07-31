@@ -100,7 +100,7 @@ const ProductGrid = () => {
   useEffect(() => {
     getData({ contentType: "sProductSfy", select: "fields" }).then((res) => res && setData(res));
     console.log(data)
-  }, [getData, data]);
+  }, []);
 
   return (
     <div className="product-main">

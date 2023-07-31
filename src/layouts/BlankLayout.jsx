@@ -1,7 +1,7 @@
 // ** React Imports
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Footer, TopNavBar, MainNavBar } from "../components";
+import { Footer, TopNavBar, MainNavBar, MenuNavigation } from "../components";
 
 const BlankLayout = () => {
   // ** States
@@ -21,6 +21,7 @@ const BlankLayout = () => {
       <header>
         <TopNavBar />
         <MainNavBar />
+        <MenuNavigation />
       </header>
       <Outlet />
       <footer>
