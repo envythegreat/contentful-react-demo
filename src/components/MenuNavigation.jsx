@@ -61,7 +61,7 @@ const menuNavigation = [
 const MenuNavigation = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setCsubCategory] = useState([]);
-	const [menu, setMenu] = useState([])
+  const [menu, setMenu] = useState([]);
   const { getData } = useContentful();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const MenuNavigation = () => {
     getData({ contentType: "subCate", select: "fields" }).then(
       (res) => res && setCsubCategory(res)
     );
-		getData({ contentType: "menu", select: "fields" }).then(
+    getData({ contentType: "menu", select: "fields" }).then(
       (res) => res && setMenu(res)
     );
   }, []);
@@ -128,3 +128,22 @@ const MenuNavigation = () => {
 };
 
 export default MenuNavigation;
+
+{
+  /* {mergedCategories.map((item, index) => (
+            <li className="menu-category" key={index}>
+              <a href={item.fields.slug} className="menu-title">
+                {item.fields.title}
+              </a>
+              {item?.subCate.length > 0 ? (
+                <ul className="dropdown-list">
+                  {item.subCate.map((cat, i) => (
+                    <li className="dropdown-item" key={i}>
+                      <a href="#">{cat.fields.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          ))} */
+}
