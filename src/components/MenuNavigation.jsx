@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import useContentful from "../utility/useContentful";
 
 const menuNavigation = [
@@ -59,35 +59,66 @@ const menuNavigation = [
 ];
 
 const MenuNavigation = () => {
-	const [data, setData] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [subCategory, setCsubCategory] = useState([]);
+	const [menu, setMenu] = useState([])
   const { getData } = useContentful();
 
   useEffect(() => {
-    getData({ contentType: "category", select: "fields" }).then((res) => res && setData(res));
-    console.log(data)
+    getData({ contentType: "category", select: "fields" }).then(
+      (res) => res && setCategory(res)
+    );
+    getData({ contentType: "subCate", select: "fields" }).then(
+      (res) => res && setCsubCategory(res)
+    );
+		getData({ contentType: "menu", select: "fields" }).then(
+      (res) => res && setMenu(res)
+    );
   }, []);
+
+  const mergedCategories = category.map((cate) => {
+    const subCate = subCategory.filter(
+      (sub) => sub.fields.codeCategory === cate.fields.codeSubCategory
+    );
+    return { ...cate, subCate };
+  });
+  console.log("menu", menu);
 
   return (
     <nav className="desktop-navigation-menu">
       <div className="container">
         <ul className="desktop-menu-category-list">
-          <li className="menu-category">
-            <div className="dropdown-panel"></div>
+          <li class="menu-category">
+            <a href="#" class="menu-title">
+              Home
+            </a>
           </li>
-          {menuNavigation.map((item, index) => (
-            <li className="menu-category" key={index}>
-              <a href="#" className="menu-title">
-                {item.title}
-              </a>
-              {"subCategory" in item ? (
-                <ul className="dropdown-list">
-                  {item.subCategory.map((cat, i) => (
-                    <li className="dropdown-item" key={i}>
-                      <a href="#">{cat.title}</a>
-                    </li>
-                  ))}
+          <li class="menu-category">
+            <a href="#" class="menu-title">
+              Categories
+            </a>
+            <div class="dropdown-panel">
+              {mergedCategories.map((cate, index) => (
+                <ul class="dropdown-panel-list" key={index}>
+                  <li class="menu-title">
+                    <a href="#">{cate.fields.title}</a>
+                  </li>
+                  {cate.subCate.length > 0
+                    ? cate.subCate.map((cat, i) => (
+                        <li class="panel-list-item" key={i}>
+                          <a href="#">{cat.fields.title}</a>
+                        </li>
+                      ))
+                    : null}
                 </ul>
-              ) : null}
+              ))}
+            </div>
+          </li>
+          {menu.map((item, index) => (
+            <li className="menu-category" key={index}>
+              <a href={item.fields.url} className="menu-title">
+                {item.fields.item}
+              </a>
             </li>
           ))}
         </ul>

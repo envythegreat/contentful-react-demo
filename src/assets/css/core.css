@@ -3032,7 +3032,7 @@
       width: calc(20% - 16px);
     }
   
-    .footer-nav-list:last-child { display: none; }
+    /* .footer-nav-list:last-child { display: none; } */
   
     .footer-bottom { margin-bottom: 0; }
   

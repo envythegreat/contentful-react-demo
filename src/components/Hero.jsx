@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BannerImg from "../assets/img/banner-1.jpg";
+import useContentful from "../utility/useContentful";
+
 const heroItem = [
   {
     img: BannerImg,
@@ -28,27 +30,35 @@ const heroItem = [
 ];
 
 const Hero = () => {
+  const [sliderData, setSliderData] = useState([]);
+  const { getData } = useContentful();
+  useEffect(() => {
+    getData({ contentType: "slider", select: "fields" }).then(
+      (res) => res && setSliderData(res)
+    );
+  }, []);
+  console.log('ssss' , sliderData)
   return (
-    <div className="banner" style={{marginTop:'20px'}}>
+    <div className="banner" style={{ marginTop: "20px" }}>
       <div className="container">
         <div className="slider-container has-scrollbar">
-          {heroItem.map((e) => (
-            <div className="slider-item" key={e.id}>
+          {sliderData.map((item, index) => (
+            <div className="slider-item" key={index}>
               <img
-                src={e.img}
+                src={item?.fields?.image?.fields?.file?.url}
                 alt="women's latest fashion sale"
                 className="banner-img"
               />
 
               <div className="banner-content">
-                <p className="banner-subtitle">{e.subtitle}</p>
+                {/* <p className="banner-subtitle">{e.subtitle}</p> */}
 
-                <h2 className="banner-title">{e.title}</h2>
+                <h2 className="banner-title" style={{color:'snow'}}>{item?.fields?.title}</h2>
 
-                <p className="banner-text">{e.text}</p>
+                {/* <p className="banner-text">{e.text}</p> */}
 
                 <a href="#" className="banner-btn">
-                  {e.btn}
+                  {item?.fields?.textButton}
                 </a>
               </div>
             </div>
