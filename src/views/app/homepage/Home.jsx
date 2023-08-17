@@ -2,7 +2,7 @@ import React from "react";
 import {
   Hero,
   ProductGrid,
-} from "../../components";
+} from "../../../components";
 
 const Home = () => {
   return (

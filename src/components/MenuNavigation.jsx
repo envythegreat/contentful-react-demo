@@ -88,24 +88,24 @@ const MenuNavigation = () => {
     <nav className="desktop-navigation-menu">
       <div className="container">
         <ul className="desktop-menu-category-list">
-          <li class="menu-category">
-            <a href="#" class="menu-title">
+          <li className="menu-category">
+            <a href="#" className="menu-title">
               Home
             </a>
           </li>
-          <li class="menu-category">
-            <a href="#" class="menu-title">
+          <li className="menu-category">
+            <a href="#" className="menu-title">
               Categories
             </a>
-            <div class="dropdown-panel">
+            <div className="dropdown-panel">
               {mergedCategories.map((cate, index) => (
-                <ul class="dropdown-panel-list" key={index}>
-                  <li class="menu-title">
+                <ul className="dropdown-panel-list" key={index}>
+                  <li className="menu-title">
                     <a href="#">{cate.fields.title}</a>
                   </li>
                   {cate.subCate.length > 0
                     ? cate.subCate.map((cat, i) => (
-                        <li class="panel-list-item" key={i}>
+                        <li className="panel-list-item" key={i}>
                           <a href="#">{cat.fields.title}</a>
                         </li>
                       ))

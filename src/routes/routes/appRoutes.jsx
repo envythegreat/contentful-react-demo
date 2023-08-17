@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
-const Home = lazy(() => import("../../views/homepage/Home"));
+const Home = lazy(() => import("../../views/app/homepage/Home"));
 const ProductDetails = lazy(() => import("../../views/app/ProductDetails"));
 
 const AppRoutes = [
