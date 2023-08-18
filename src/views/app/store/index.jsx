@@ -35,5 +35,5 @@ export const appSlicer = createSlice({
   },
 });
 
-export const appSelector = (state) => state.globalappslicer;
+export const homeSelector = (state) => state.appReducer;
 export default appSlicer.reducer;

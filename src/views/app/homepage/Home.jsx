@@ -4,7 +4,7 @@ import {
   ProductGrid,
 } from "../../../components";
 import { useSelector, useDispatch } from "react-redux";
-import { appSelector, getCategories } from "../store";
+import { homeSelector, getCategories } from "../store";
 // import useAxios from "../../../configs/axios/useAxios";
 
 
@@ -15,7 +15,7 @@ const Home = () => {
   //   isTokenUsed: false,
   //   tokenName: null,
   // });
-  // const {categories, error} = useSelector(appSelector);
+  const {categories, error} = useSelector(homeSelector);
   
 
   useEffect(() => {
