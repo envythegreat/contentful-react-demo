@@ -1,15 +1,21 @@
-import React, {Suspense} from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
-import './assets/css/core.css'
+import "./assets/css/core.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+// -- Redux
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Suspense>
-        <App />
-      </Suspense>
+      <Provider store={store}>
+        <Suspense>
+          <App />
+        </Suspense>
+      </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
