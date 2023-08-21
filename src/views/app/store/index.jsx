@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../../configs/axios/instance";
+import {categoriesMapper, productMapper} from './mapper'
 
 // Get Categories
 export const getCategories = createAsyncThunk(
@@ -13,11 +14,23 @@ export const getCategories = createAsyncThunk(
   }
 );
 
+
+export const getProduct = createAsyncThunk(
+  "globalappslicer/getProducts",
+  async (params) => {
+    const response = await instance.get('/catalog-search', {
+      params,
+    });
+    return response.data
+  }
+)
+
 // app slicer
 export const appSlicer = createSlice({
   name: "globalappslicer",
   initialState: {
-    categories: {},
+    categories: [],
+    products: [],
     loading: false,
     error: "",
   },
@@ -30,8 +43,16 @@ export const appSlicer = createSlice({
       })
       .addCase(getCategories.fulfilled, (state, action) => {
         state.loading = false;
-        state.categories = action.payload.data;
-      });
+        state.categories = categoriesMapper(action.payload.data);
+      })
+      .addCase(getProduct.pending, (state) => {
+        state.loading = true;
+        state.products = [];
+      })
+      .addCase(getProduct.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = productMapper(action.payload.data);
+      })
   },
 });
 

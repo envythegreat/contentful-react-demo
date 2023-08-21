@@ -3,23 +3,16 @@ import {
   Hero,
   ProductGrid,
 } from "../../../components";
-import { useSelector, useDispatch } from "react-redux";
-import { homeSelector, getCategories } from "../store";
+import { useDispatch } from "react-redux";
+import { getCategories, getProduct } from "../store";
 // import useAxios from "../../../configs/axios/useAxios";
 
 
 const Home = () => {
   const dispatch = useDispatch();
-  // const instance = useAxios({
-  //   baseUrl: "http://glue.uksouth.cloudapp.azure.com",
-  //   isTokenUsed: false,
-  //   tokenName: null,
-  // });
-  const {categories, error} = useSelector(homeSelector);
-  
-
   useEffect(() => {
     dispatch(getCategories({}))
+    dispatch(getProduct({}))
   }, [dispatch])
 
 

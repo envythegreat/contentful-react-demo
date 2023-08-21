@@ -1,88 +1,19 @@
 import React, { useEffect, useState } from "react";
 import useContentful from "../utility/useContentful";
-
-const menuNavigation = [
-  {
-    title: "Home",
-  },
-  {
-    title: "Men's",
-    subCategory: [
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-    ],
-  },
-  {
-    title: "Women's",
-    subCategory: [
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-    ],
-  },
-  {
-    title: "JEWELRY",
-    subCategory: [
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-      {
-        title: "loremEpsum",
-        slug: "loremepsum",
-      },
-    ],
-  },
-];
+import { useSelector } from "react-redux";
+import { homeSelector } from "../views/app/store";
+import { Link } from "react-router-dom";
 
 const MenuNavigation = () => {
-  const [category, setCategory] = useState([]);
-  const [subCategory, setCsubCategory] = useState([]);
   const [menu, setMenu] = useState([]);
   const { getData } = useContentful();
-
+  const {categories, loading} = useSelector(homeSelector)
+  console.log('redux', categories)
   useEffect(() => {
-    getData({ contentType: "category", select: "fields" }).then(
-      (res) => res && setCategory(res)
-    );
-    getData({ contentType: "subCate", select: "fields" }).then(
-      (res) => res && setCsubCategory(res)
-    );
     getData({ contentType: "menu", select: "fields" }).then(
       (res) => res && setMenu(res)
     );
   }, []);
-
-  const mergedCategories = category.map((cate) => {
-    const subCate = subCategory.filter(
-      (sub) => sub.fields.codeCategory === cate.fields.codeSubCategory
-    );
-    return { ...cate, subCate };
-  });
-  console.log("menu", menu);
 
   return (
     <nav className="desktop-navigation-menu">
@@ -98,15 +29,15 @@ const MenuNavigation = () => {
               Categories
             </a>
             <div className="dropdown-panel">
-              {mergedCategories.map((cate, index) => (
-                <ul className="dropdown-panel-list" key={index}>
+              {categories.map((cate) => (
+                <ul className="dropdown-panel-list" key={cate.id}>
                   <li className="menu-title">
-                    <a href="#">{cate.fields.title}</a>
+                    <Link to={cate.url}>{cate.name}</Link>
                   </li>
-                  {cate.subCate.length > 0
-                    ? cate.subCate.map((cat, i) => (
-                        <li className="panel-list-item" key={i}>
-                          <a href="#">{cat.fields.title}</a>
+                  {cate.children.length > 0
+                    ? cate.children.map((cat) => (
+                        <li className="panel-list-item" key={cat.nodeId}>
+                          <Link to={cat.url}>{cat.name}</Link>
                         </li>
                       ))
                     : null}
@@ -126,7 +57,6 @@ const MenuNavigation = () => {
     </nav>
   );
 };
-//ssssssssssssssssssss
 export default MenuNavigation;
 
 {
