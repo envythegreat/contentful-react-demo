@@ -5,6 +5,14 @@ const ProductDetails = lazy(() => import("../../views/app/ProductDetails"));
 
 const AppRoutes = [
   {
+    path: "/:lang/:category/:catid",
+    element: <Home />,
+    meta: {
+      layout: "blank",
+      publicRoute:true
+    },
+  },
+  {
     path: "/",
     element: <Home />,
     meta: {

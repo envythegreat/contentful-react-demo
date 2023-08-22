@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import useContentful from "../utility/useContentful";
 import { useSelector } from "react-redux";
 import { homeSelector } from "../views/app/store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MenuNavigation = () => {
+  const navigate = useNavigate()
   const [menu, setMenu] = useState([]);
   const { getData } = useContentful();
   const {categories, loading} = useSelector(homeSelector)
@@ -14,6 +15,10 @@ const MenuNavigation = () => {
       (res) => res && setMenu(res)
     );
   }, []);
+
+  const setnavigate = (url) => {
+    navigate(url)
+  }
 
   return (
     <nav className="desktop-navigation-menu">
@@ -32,12 +37,12 @@ const MenuNavigation = () => {
               {categories.map((cate) => (
                 <ul className="dropdown-panel-list" key={cate.id}>
                   <li className="menu-title">
-                    <Link to={cate.url}>{cate.name}</Link>
+                    <button  onClick={() => setnavigate(`${cate.url}/${cate.id}`)}>{cate.name}</button>
                   </li>
                   {cate.children.length > 0
                     ? cate.children.map((cat) => (
                         <li className="panel-list-item" key={cat.nodeId}>
-                          <Link to={cat.url}>{cat.name}</Link>
+                          <button  onClick={() => setnavigate(`${cate.url}/${cat.nodeId}`)}>{cat.name}</button>
                         </li>
                       ))
                     : null}

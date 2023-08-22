@@ -2931,7 +2931,7 @@ footer {
     pointer-events: all;
   }
 
-  .dropdown-panel-list .menu-title a {
+  .dropdown-panel-list .menu-title a,.menu-title button {
     color: var(--onyx);
     font-size: var(--fs-7);
     font-weight: var(--weight-600);
@@ -2940,7 +2940,7 @@ footer {
     margin-bottom: 10px;
   }
 
-  .panel-list-item a {
+  .panel-list-item a, button {
     color: var(--sonic-silver);
     font-size: var(--fs-7);
     text-transform: capitalize;
@@ -2948,8 +2948,9 @@ footer {
     -o-transition: var(--transition-timing);
     transition: var(--transition-timing);
   }
+  
 
-  .panel-list-item a:hover {
+  .panel-list-item a:hover, button:hover {
     color: var(--salmon-pink);
   }
 
