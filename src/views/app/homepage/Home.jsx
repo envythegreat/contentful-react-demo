@@ -1,28 +1,34 @@
-import React, {useEffect} from "react";
-import {
-  Hero,
-  ProductGrid,
-} from "../../../components";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { Hero, ProductGrid, Sidebar } from "../../../components";
+import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProduct } from "../store";
 import { useParams } from "react-router-dom";
+import { homeSelector } from "../store";
 // import useAxios from "../../../configs/axios/useAxios";
-
 
 const Home = () => {
   const { lang, category, catid } = useParams();
   const dispatch = useDispatch();
+  const { categories } = useSelector(homeSelector);
   useEffect(() => {
-    dispatch(getCategories({}))
-    dispatch(getProduct(catid &&{category:catid}))
-  }, [dispatch])
-
+    if (!categories.data > 0) {
+      dispatch(getCategories({}));
+    }
+    dispatch(getProduct(catid && { category: catid }));
+  }, [dispatch]);
 
   return (
     <>
       <main>
         <Hero />
-        <ProductGrid />
+        <div className="product-container">
+          <div className="container">
+            <Sidebar />
+            <div className="product-box">
+              <ProductGrid />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );

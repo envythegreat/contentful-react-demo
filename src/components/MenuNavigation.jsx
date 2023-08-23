@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import useContentful from "../utility/useContentful";
 import { useSelector } from "react-redux";
 import { homeSelector } from "../views/app/store";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MenuNavigation = () => {
   const navigate = useNavigate()
   const [menu, setMenu] = useState([]);
   const { getData } = useContentful();
-  const {categories, loading} = useSelector(homeSelector)
-  console.log('redux', categories)
+  const {categories} = useSelector(homeSelector)
+  
   useEffect(() => {
     getData({ contentType: "menu", select: "fields" }).then(
       (res) => res && setMenu(res)
@@ -34,7 +34,7 @@ const MenuNavigation = () => {
               Categories
             </a>
             <div className="dropdown-panel">
-              {categories.map((cate) => (
+              {!categories.loading && categories.data.map((cate) => (
                 <ul className="dropdown-panel-list" key={cate.id}>
                   <li className="menu-title">
                     <button  onClick={() => setnavigate(`${cate.url}/${cate.id}`)}>{cate.name}</button>

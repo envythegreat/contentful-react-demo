@@ -29,7 +29,10 @@ export const getProduct = createAsyncThunk(
 export const appSlicer = createSlice({
   name: "globalappslicer",
   initialState: {
-    categories: [],
+    categories: {
+      data: [],
+      loading: false
+    },
     products: [],
     loading: false,
     error: "",
@@ -38,12 +41,12 @@ export const appSlicer = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCategories.pending, (state) => {
-        state.loading = true;
-        state.categories = [];
+        state.categories.loading = true;
+        state.categories.data = [];
       })
       .addCase(getCategories.fulfilled, (state, action) => {
-        state.loading = false;
-        state.categories = categoriesMapper(action.payload.data);
+        state.categories.loading = false;
+        state.categories.data = categoriesMapper(action.payload.data);
       })
       .addCase(getProduct.pending, (state) => {
         state.loading = true;

@@ -11,7 +11,7 @@ const ProductGrid = () => {
 
   return (
     <div className="product-main">
-      <h2 className="title" style={{ margin: "10px 80px" }}>
+      <h2 className="title">
         Products
       </h2>
       <div className="product-grid">

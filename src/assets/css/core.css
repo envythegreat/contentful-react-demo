@@ -1596,10 +1596,9 @@ body::-webkit-scrollbar-thumb:hover {
 .product-grid {
   display: -ms-grid;
   display: grid;
-  /* -ms-grid-columns: 1fr; */
+  -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
   gap: 25px;
-  padding: 10px 80px;
 }
 
 .product-grid .showcase {
@@ -3075,19 +3074,19 @@ footer {
     -ms-flex-align: start;
     align-items: flex-start;
     gap: 30px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
 
   .sidebar {
-    --fs-5: 0.941rem;
+    /* --fs-5: 0.941rem; */
 
-    position: -webkit-sticky;
+    /* position: -webkit-sticky; */
 
     position: sticky;
     top: 30px;
     left: 0;
     padding: 0;
-    min-width: -webkit-calc(25% - 15px);
+    /* min-width: -webkit-calc(25% - 15px); */
     min-width: calc(25% - 15px);
     margin-bottom: 30px;
     visibility: visible;
