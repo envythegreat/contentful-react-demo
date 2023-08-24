@@ -35,12 +35,17 @@ export const appSlicer = createSlice({
     },
     products: {
       data:[],
+      selectedProduct:{},
       loading: false,
       pagination:{}
     },
     error: "",
   },
-  reducers: {},
+  reducers: {
+    getSingleProduct: (state, action) => {
+      state.products.selectedProduct = state.products.data.find((e) => e.abstractSku === action.payload)
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCategories.pending, (state) => {
@@ -64,5 +69,6 @@ export const appSlicer = createSlice({
   },
 });
 
+export const {getSingleProduct} = appSlicer.actions
 export const homeSelector = (state) => state.appReducer;
 export default appSlicer.reducer;

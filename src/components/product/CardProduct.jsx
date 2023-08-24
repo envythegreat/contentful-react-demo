@@ -95,7 +95,7 @@ const CardProduct = ({ item }) => {
           {item.abstractSku}
         </a>
 
-        <Link to={`/product-details/${item.abstractName}`}>
+        <Link to={`/product-details/${item.abstractSku}`}>
           <h3 className="showcase-title">{item.abstractName}</h3>
         </Link>
         {

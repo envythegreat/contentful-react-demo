@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { StarIcon } from "../../components/icons";
 import { useParams } from "react-router-dom";
-import useContentful from "../../utility/useContentful";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProduct, homeSelector } from "./store";
 const ProductDetails = () => {
   const { slug } = useParams();
-  const [productDetails, setProductDetails] = useState();
-  const { getSingleItem } = useContentful();
-
+  const dispatch = useDispatch();
+  const { products } = useSelector(homeSelector);
+  const { selectedProduct } = products;
   useEffect(() => {
-    getSingleItem({ content_type: "sProductSfy", slug }).then(
-      (res) => res && setProductDetails(res)
-    );
-  }, []);
-  console.log("ss", productDetails);
+    dispatch(getSingleProduct(slug));
+  }, [dispatch, slug]);
+
   return (
     <>
       <div className="product-featured">
@@ -21,9 +19,30 @@ const ProductDetails = () => {
           <div className="showcase-container">
             <div className="showcase">
               <div className="showcase-banner">
+                <div style={{
+                  display:'flex',
+                }}>
+                  {selectedProduct?.images?.map((e, i) => (
+                    <img
+                      key={i}
+                      src={e.externalUrlLarge}
+                      alt={selectedProduct?.abstractName}
+                      style={{
+                        maxWidth: "60px",
+                        maxHeight: "60px",
+                        width: "auto",
+                        height: "auto",
+                        margin:'20px 0px',
+                        marginRight:'20px'
+                        // backgroundColor: "blue",
+                        // position: "absolute",
+                      }}
+                    />
+                  ))}
+                </div>
                 <img
-                  src={productDetails?.items[0].fields.image.fields.file?.url}
-                  alt={productDetails?.items[0].fields.image.fields.title}
+                  src={selectedProduct?.images?.[0].externalUrlLarge}
+                  alt={selectedProduct?.abstractName}
                   className="showcase-img"
                 />
               </div>
@@ -39,22 +58,21 @@ const ProductDetails = () => {
 
                 <a href="#">
                   <h3 className="showcase-title">
-                    {productDetails?.items[0].fields.title}
+                    {selectedProduct?.abstractName}
                   </h3>
                 </a>
 
-                <p className="showcase-desc">
-                  {productDetails?.items[0].fields.category}
-                </p>
+                <p className="showcase-desc">{selectedProduct?.abstractSku}</p>
 
                 <div className="price-box">
                   <p className="price">
-                    {productDetails?.items[0].fields.price.ProductCurrentPrice}$
+                    {selectedProduct?.prices?.currency?.symbol}{" "}
+                    {selectedProduct?.price}
                   </p>
 
-                  <del>
+                  {/* <del>
                     {productDetails?.items[0].fields.price.ProductOldPrice}$
-                  </del>
+                  </del> */}
                 </div>
 
                 <button className="add-cart-btn">add to cart</button>
@@ -109,12 +127,9 @@ const ProductDetails = () => {
             className="showcase-desc"
             style={{ lineHeight: "30px" }}
             dangerouslySetInnerHTML={{
-              __html:
-                productDetails?.items[0].fields.description.content[0]
-                  .content[0].value,
+              __html: selectedProduct?.abstractName,
             }}
-          >
-          </p>
+          ></p>
         </div>
       </div>
     </>
@@ -122,7 +137,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-
-
-
