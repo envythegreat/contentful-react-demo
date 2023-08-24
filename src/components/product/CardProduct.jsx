@@ -70,14 +70,12 @@ const CardProduct = ({ item }) => {
           src={item?.images?.[0].externalUrlLarge}
           alt={item?.abstractSku}
           className="product-img default"
-          // width="300"
         />
         {item?.images?.[1]?.externalUrlLarge && (
           <img
             src={item?.images?.[1].externalUrlLarge}
             alt={item?.abstractSku}
             className="product-img hover"
-            // width="300"
           />
         )}
         {/* <ProductBadge /> */}

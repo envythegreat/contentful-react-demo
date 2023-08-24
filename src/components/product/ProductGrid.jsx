@@ -2,10 +2,11 @@ import React, { useEffect, } from "react";
 import CardProduct from "./CardProduct";
 import { useSelector } from "react-redux";
 import { homeSelector } from "../../views/app/store";
+ 
 
 const ProductGrid = () => {
 
-  const {products, loading} = useSelector(homeSelector)
+  const {products} = useSelector(homeSelector)
 
   useEffect(() => {}, []);
 
@@ -15,7 +16,7 @@ const ProductGrid = () => {
         Products
       </h2>
       <div className="product-grid">
-        {products.map((item) => (
+        {products.data.map((item) => (
           <CardProduct key={item.abstractSku} item={item} />
         ))}
       </div>

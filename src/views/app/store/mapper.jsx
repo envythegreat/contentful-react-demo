@@ -17,3 +17,14 @@ export const productMapper = (data) => {
     return pr
   });
 }
+
+export const paginationExtractor = (data) => {
+  const objs = data[0]?.attributes?.pagination || {};
+  return {
+    totalItems: objs?.numFound,
+    currentPage: objs?.currentPage,
+    totalPages: objs?.maxPage,
+    itemPerPage: objs?.currentItemsPerPage,
+    pageConfig: objs.config
+  }
+}

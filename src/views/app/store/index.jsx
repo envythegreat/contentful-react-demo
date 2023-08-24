@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../../configs/axios/instance";
-import {categoriesMapper, productMapper} from './mapper'
+import {categoriesMapper, productMapper, paginationExtractor} from './mapper'
 
 // Get Categories
 export const getCategories = createAsyncThunk(
@@ -33,8 +33,11 @@ export const appSlicer = createSlice({
       data: [],
       loading: false
     },
-    products: [],
-    loading: false,
+    products: {
+      data:[],
+      loading: false,
+      pagination:{}
+    },
     error: "",
   },
   reducers: {},
@@ -49,12 +52,14 @@ export const appSlicer = createSlice({
         state.categories.data = categoriesMapper(action.payload.data);
       })
       .addCase(getProduct.pending, (state) => {
-        state.loading = true;
-        state.products = [];
+        state.products.loading = true;
+        state.products.data = [];
+        state.products.pagination = {}
       })
       .addCase(getProduct.fulfilled, (state, action) => {
-        state.loading = false;
-        state.products = productMapper(action.payload.data);
+        state.products.loading = false;
+        state.products.data = productMapper(action.payload.data);
+        state.products.pagination =  paginationExtractor(action.payload.data)
       })
   },
 });
