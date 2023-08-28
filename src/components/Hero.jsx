@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import BannerImg from "../assets/img/banner-1.jpg";
 import useContentful from "../utility/useContentful";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
