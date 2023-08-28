@@ -1,4 +1,4 @@
-To bypass cros errors we use the following proxy
+To bypass cors errors we use the following proxy
 * https://cors-anywhere.herokuapp.com/
 
 How to use : 

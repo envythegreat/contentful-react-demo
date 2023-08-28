@@ -37,7 +37,6 @@ const Hero = () => {
       (res) => res && setSliderData(res)
     );
   }, []);
-  console.log('ssss' , sliderData)
   return (
     <div className="banner" style={{ marginTop: "20px" }}>
       <div className="container">
