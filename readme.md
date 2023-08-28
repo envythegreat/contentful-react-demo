@@ -9,3 +9,6 @@ Request examples :
 
 For Documentation Please Refer to : 
 * https://github.com/Rob--W/cors-anywhere/tree/master
+
+* Deployed Version :
+* https://cors-anywhere-hazel.vercel.app/

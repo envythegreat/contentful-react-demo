@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // cors anyanywhere https://cors-anywhere.herokuapp.com instead of localhost:8080
-axios.defaults.baseURL = "http://localhost:8080/http://glue.uksouth.cloudapp.azure.com";
+axios.defaults.baseURL = "https://cors-anywhere-hazel.vercel.app/glue.uksouth.cloudapp.azure.com";
 
 axios.interceptors.request.use(
   async (config) => {
