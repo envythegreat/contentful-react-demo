@@ -25,6 +25,16 @@ export const getProduct = createAsyncThunk(
   }
 )
 
+export const getAbstractProduct = createAsyncThunk(
+  "globalappslicer/getAbstractProduct",
+  async ({params, productid}) => {
+    const response = await instance.get(`/abstract-products/${productid}`, {
+      params,
+    });
+    return response.data
+  }
+)
+
 // app slicer
 export const appSlicer = createSlice({
   name: "globalappslicer",
@@ -38,6 +48,14 @@ export const appSlicer = createSlice({
       selectedProduct:{},
       loading: false,
       pagination:{}
+    },
+    wishlist:{
+      products:[],
+      loading:false,
+    },
+    shopingCart:{
+      products:[],
+      loading:false
     },
     error: "",
   },
@@ -65,6 +83,14 @@ export const appSlicer = createSlice({
         state.products.loading = false;
         state.products.data = productMapper(action.payload.data);
         state.products.pagination =  paginationExtractor(action.payload.data)
+      })
+      .addCase(getAbstractProduct.pending, (state) => {
+        state.products.loading = true;
+        state.products.selectedProduct = {}
+      })
+      .addCase(getAbstractProduct.fulfilled, (state, action) => {
+        state.products.loading = false;
+        state.products.selectedProduct = action.payload.data
       })
   },
 });

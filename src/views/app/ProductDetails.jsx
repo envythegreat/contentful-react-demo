@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import { StarIcon } from "../../components/icons";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct, homeSelector } from "./store";
+import { getSingleProduct, homeSelector, getAbstractProduct } from "./store";
 const ProductDetails = () => {
+
+
   const { slug } = useParams();
   const dispatch = useDispatch();
   const { products } = useSelector(homeSelector);
   const { selectedProduct } = products;
+  
   useEffect(() => {
     dispatch(getSingleProduct(slug));
+    dispatch(getAbstractProduct({params:{}, productid:slug}));
   }, [dispatch, slug]);
 
   return (

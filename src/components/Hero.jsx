@@ -4,6 +4,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 
 const Hero = () => {
+
+
   const [sliderData, setSliderData] = useState([]);
   const { getData } = useContentful();
   useEffect(() => {
@@ -11,6 +13,8 @@ const Hero = () => {
       (res) => res && setSliderData(res)
     );
   }, []);
+
+  
   return (
     <div className="banner" style={{ marginTop: "20px" }}>
       <div className="container">
@@ -26,7 +30,7 @@ const Hero = () => {
               <div className="banner-content">
                 {/* <p className="banner-subtitle">{e.subtitle}</p> */}
 
-                <h2 className="banner-title" style={{ color: "snow" }}>
+                <h2 className="banner-title" >
                   {item?.fields?.title}
                 </h2>
 
