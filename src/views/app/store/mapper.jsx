@@ -28,3 +28,7 @@ export const paginationExtractor = (data) => {
     pageConfig: objs.config
   }
 }
+
+export const abstractProduct = (data) => {
+  
+}

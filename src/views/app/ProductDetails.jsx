@@ -3,6 +3,11 @@ import { StarIcon } from "../../components/icons";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct, homeSelector, getAbstractProduct } from "./store";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+
+
 const ProductDetails = () => {
 
 
@@ -13,7 +18,9 @@ const ProductDetails = () => {
   
   useEffect(() => {
     dispatch(getSingleProduct(slug));
-    dispatch(getAbstractProduct({params:{}, productid:slug}));
+    // dispatch(getAbstractProduct({params:{
+    //   include:'abstract-product-prices,concrete-products,product-labels'
+    // }, productid:slug}));
   }, [dispatch, slug]);
 
   return (
@@ -22,33 +29,25 @@ const ProductDetails = () => {
         <div className="showcase-wrapper has-scrollbar">
           <div className="showcase-container">
             <div className="showcase">
-              <div className="showcase-banner">
-                <div style={{
-                  display:'flex',
+              <div className="showcase-banner" style={{
+                  // display:'flex',
+                 
                 }}>
+                <Carousel showIndicators={false} transitionTime={0}>
                   {selectedProduct?.images?.map((e, i) => (
                     <img
                       key={i}
                       src={e.externalUrlLarge}
                       alt={selectedProduct?.abstractName}
-                      style={{
-                        maxWidth: "60px",
-                        maxHeight: "60px",
-                        width: "auto",
-                        height: "auto",
-                        margin:'20px 0px',
-                        marginRight:'20px'
-                        // backgroundColor: "blue",
-                        // position: "absolute",
-                      }}
+                      className="showcase-img"
                     />
                   ))}
-                </div>
-                <img
+                </Carousel>
+                {/* <img
                   src={selectedProduct?.images?.[0].externalUrlLarge}
                   alt={selectedProduct?.abstractName}
                   className="showcase-img"
-                />
+                /> */}
               </div>
 
               <div className="showcase-content">

@@ -3558,3 +3558,8 @@ footer {
   font-weight: 700;
   color: #fff;
 }
+.carousel .thumb {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}

@@ -9,7 +9,6 @@ export const getCategories = createAsyncThunk(
     const response = await instance.get("/category-trees", {
       params,
     });
-    console.log("My response :", response);
     return response.data;
   }
 );

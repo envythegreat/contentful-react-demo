@@ -10,7 +10,6 @@ const Footer = () => {
       (res) => res && setSliderData(res)
     );
   }, []);
-  console.log('footer', footerData)
   return (
     <>
       <div className="footer-nav">
