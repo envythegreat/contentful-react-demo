@@ -2,7 +2,25 @@ import React from "react";
 import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 import "../assets/css/offset.scss";
 import img1 from "../assets/img/jacket-5.jpg";
-import { TrashIcon } from "./icons";
+import girl from "../assets/img/girls.jpg";
+import ProductCart from "./product/ProductCart";
+
+const items = [
+  {
+    img: img1,
+    title: "Relaxed Short Full Sleeve T-Shirt",
+    price: "25$",
+    quantity: 2,
+    id: 1231234,
+  },
+  {
+    img: girl,
+    title: "girls pink embro design top",
+    price: "40$",
+    quantity: 5,
+    id: 7687344,
+  },
+];
 
 const CartOffSet = ({ toggle, canvas }) => {
   return (
@@ -22,35 +40,20 @@ const CartOffSet = ({ toggle, canvas }) => {
         Shopping Cart
       </OffcanvasHeader>
       <OffcanvasBody>
-        <div class="product-minimal">
-          <div class="product-showcase">
-            <div className="showcase">
-              <a href="#" className="showcase-img-box">
-                <img
-                  src={img1}
-                  alt="relaxed short full sleeve t-shirt"
-                  width="70"
-                  className="showcase-img"
-                />
-              </a>
+        <div className="offset-body">
+          <div className="offset-products has-scrollbar">
+            {items.map((item) => (
+              <ProductCart item={item} key={item.id} />
+            ))}
+          </div>
 
-              <div className="showcase-content">
-                <a href="#">
-                  <h4 className="showcase-title">
-                    Relaxed Short full Sleeve T-Shirt
-                  </h4>
-                </a>
-                <div className="price-box">
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <p className="price">$45.00</p>
-                    <p className="price">QTY: 1</p>
-                  </div>
-                  <button>
-                    <TrashIcon width={14} height={14} color={"#ff8f9c"} />
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="offset-footer">
+            <button className="cart-button">
+              Checkout
+            </button>
+            <button className="cart-button">
+              Delete all
+            </button>
           </div>
         </div>
       </OffcanvasBody>

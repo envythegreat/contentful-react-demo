@@ -24,3 +24,29 @@
   border-radius: 0.25rem;
   opacity: 0.5;
 }
+
+.offset-body {
+  position: relative;
+  .offset-products {
+    height: 500px;
+    padding: 10px 5px;
+    overflow-y: scroll;
+  }
+  .offset-footer {
+    position: fixed;
+    bottom: 30px;
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    margin: 20px;
+    .cart-button{
+      background-color: #ff8f9c;
+      width: 45%;
+      height: 50px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
+}
