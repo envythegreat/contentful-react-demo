@@ -1,32 +1,29 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { SearchIcon, HeartIcon, UserIcon, CartIcon } from "../icons";
 import logo from "../../assets/img/aperture.svg";
 import CartOffSet from "../CartOffSet";
-const userAction = [
-  {
-    name: "person",
-    elem: <UserIcon width={30} height={30} />,
-  },
-  {
-    name: "wishlist",
-    elem: <HeartIcon width={30} height={30} />,
-    count: true,
-  },
-  {
-    name: "cart",
-    elem: <CartIcon width={30} height={30} />,
-    count: true,
-  },
-];
+
+import { useDispatch, useSelector } from "react-redux";
+import { homeSelector, initCardAdd } from "../../views/app/store";
+import { getSavedCart } from "../../utility";
 
 const MainNavBar = () => {
-
   const [canvas, setCanvasOpen] = useState(false);
   const toggle = () => setCanvasOpen((prevState) => !prevState);
 
+  const dispatch = useDispatch();
+  const { shopingCart } = useSelector(homeSelector);
+
+  useEffect(() => {
+    const cartData = getSavedCart();
+    return () =>
+      cartData.forEach((element) => {
+        dispatch(initCardAdd(element));
+      });
+  }, [dispatch, initCardAdd, getSavedCart]);
+
   return (
     <div className="header-main">
-      
       <div className="container">
         <a href="#" className="header-logo">
           <img src={logo} alt="Anon's logo" width="120" height="36" />
@@ -46,8 +43,6 @@ const MainNavBar = () => {
         </div>
 
         <div className="header-user-actions">
-
-
           <button className="action-btn">
             <UserIcon width={30} height={30} />
           </button>
@@ -57,18 +52,13 @@ const MainNavBar = () => {
           </button>
           <button className="action-btn" onClick={toggle}>
             <CartIcon width={30} height={30} />
-            <span className="count">0</span>
+            <span className="count">
+              {shopingCart && shopingCart.products.length}
+            </span>
           </button>
-
-          {/* {userAction.map((e, i) => (
-            <button className="action-btn" key={e.name}>
-              {e.elem}
-              {e.count && <span className="count">0</span>}
-            </button>
-          ))} */}
         </div>
       </div>
-      <CartOffSet toggle={toggle} canvas={canvas} />
+      <CartOffSet toggle={toggle} canvas={canvas} cart={shopingCart} />
     </div>
   );
 };

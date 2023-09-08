@@ -8,3 +8,8 @@ export const getHomeRouteForLoggedInUser = (userRole) => {
 };
 
 export const getUserData = () => localStorage.getItem("token");
+
+export const getSavedCart = () => {
+  const cart = localStorage.getItem("cart");
+  return cart ? JSON.parse(cart) : []
+}

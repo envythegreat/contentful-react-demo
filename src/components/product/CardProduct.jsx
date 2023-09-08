@@ -1,23 +1,31 @@
 import React from "react";
 import { HeartIcon, CartIcon, EyeIcon, StarIcon } from "../icons";
 import { Link } from "react-router-dom";
-
-const productAction = [
-  {
-    name: "wish",
-    elem: <HeartIcon width={20} height={20} />,
-  },
-  {
-    name: "eye",
-    elem: <CartIcon width={20} height={20} />,
-  },
-  {
-    name: "cart",
-    elem: <EyeIcon width={20} height={20} />,
-  },
-];
+import { addToCart } from "../../views/app/store";
+import { useDispatch } from "react-redux";
 
 const CardProduct = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const productAction = [
+    {
+      name: "wish",
+      elem: <HeartIcon width={20} height={20} />,
+      onClick: () => {},
+    },
+    {
+      name: "eye",
+      elem: <EyeIcon width={20} height={20} />,
+      onClick: () => {},
+    },
+    {
+      name: "cart",
+      elem: <CartIcon width={20} height={20} />,
+      onClick: (item) => {
+        dispatch(addToCart(item));
+      },
+    },
+  ];
   // const RATE_LIMIT = 5;
   // const ProductBadge = () => {
   //   if(item?.price?.ProductNew) return <p className="showcase-badge angle pink">New</p>
@@ -82,9 +90,9 @@ const CardProduct = ({ item }) => {
         {/* <p className="showcase-badge">15%</p> */}
 
         <div className="showcase-actions">
-          {productAction.map((item) => (
-            <button className="btn-action" key={item.name}>
-              {item.elem}
+          {productAction.map((it) => (
+            <button className="btn-action" key={it.name} onClick={() => it.onClick(item)}>
+              {it.elem}
             </button>
           ))}
         </div>

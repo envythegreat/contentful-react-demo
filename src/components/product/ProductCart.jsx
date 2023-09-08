@@ -3,21 +3,22 @@ import { TrashIcon } from "../icons";
 
 const ProductCart = ({ item }) => {
   return (
-    <div class="product-minimal">
-      <div class="product-showcase">
+    <div className="product-minimal">
+      <div className="product-showcase">
         <div className="showcase">
           <a href="#" className="showcase-img-box">
             <img
-              src={item.img}
-              alt={item.title}
+              src={item?.images?.[0].externalUrlLarge}
+              alt={item.abstractName}
               width="70"
+              height="70"
               className="showcase-img"
             />
           </a>
 
           <div className="showcase-content">
             <a href="#">
-              <h4 className="showcase-title">{item.title}</h4>
+              <h4 className="showcase-title">{item.abstractName}</h4>
             </a>
             <div className="price-box">
               <div style={{ display: "flex", gap: "10px" }}>

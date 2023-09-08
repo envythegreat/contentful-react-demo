@@ -30,5 +30,12 @@ export const paginationExtractor = (data) => {
 }
 
 export const abstractProduct = (data) => {
-  
+  return {
+    abstractSku: data.abstractSku,
+    price : data.price,
+    abstractName: data.abstractName,
+    quantity:1,
+    image: data?.images[0]?.externalUrlLarge,
+    currency: data?.prices?.currency?.symbol || "$"
+  }
 }

@@ -1,28 +1,20 @@
 import React from "react";
 import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 import "../assets/css/offset.scss";
-import img1 from "../assets/img/jacket-5.jpg";
-import girl from "../assets/img/girls.jpg";
+
 import ProductCart from "./product/ProductCart";
+import { useNavigate } from "react-router-dom";
 
-const items = [
-  {
-    img: img1,
-    title: "Relaxed Short Full Sleeve T-Shirt",
-    price: "25$",
-    quantity: 2,
-    id: 1231234,
-  },
-  {
-    img: girl,
-    title: "girls pink embro design top",
-    price: "40$",
-    quantity: 5,
-    id: 7687344,
-  },
-];
 
-const CartOffSet = ({ toggle, canvas }) => {
+
+const CartOffSet = ({ toggle, canvas, cart}) => {
+
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate('/cart');
+    toggle()
+  }
+
   return (
     <Offcanvas
       toggle={toggle}
@@ -42,13 +34,13 @@ const CartOffSet = ({ toggle, canvas }) => {
       <OffcanvasBody>
         <div className="offset-body">
           <div className="offset-products has-scrollbar">
-            {items.map((item) => (
-              <ProductCart item={item} key={item.id} />
+            {cart && cart.products.map((item) => (
+              <ProductCart item={item} key={item.abstractSku} />
             ))}
           </div>
 
           <div className="offset-footer">
-            <button className="cart-button">
+            <button className="cart-button" onClick={() => handleNavigate()}>
               Checkout
             </button>
             <button className="cart-button">
