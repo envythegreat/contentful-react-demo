@@ -70,9 +70,21 @@ export const appSlicer = createSlice({
       state.shopingCart.products.push(abstractProduct(action.payload));
       localStorage.setItem('cart', JSON.stringify(state.shopingCart.products));
     },
+    changeQuantity: (state, action) => {
+      const itemIndex = state.shopingCart.products.find(
+        item => item.abstractSku === action.payload.id
+      );
+      if(action.payload.action === "plus") {
+        itemIndex.quantity +=1;
+      } else if (action.payload.action === "minus") {
+        itemIndex.quantity -=1;
+      }
+      // state.shopingCart.products.push(abstractProduct(action.payload));
+      localStorage.setItem('cart', JSON.stringify(state.shopingCart.products));
+    },
     removeFromCart: (state, action) => {
       state.shopingCart.products = state.shopingCart.products.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.abstractSku !== action.payload
       );
       localStorage.setItem('cart', JSON.stringify(state.shopingCart.products));
     },
@@ -108,6 +120,6 @@ export const appSlicer = createSlice({
   },
 });
 
-export const { getSingleProduct , addToCart, removeFromCart, initCardAdd} = appSlicer.actions;
+export const { getSingleProduct , addToCart, removeFromCart, initCardAdd, changeQuantity,} = appSlicer.actions;
 export const homeSelector = (state) => state.appReducer;
 export default appSlicer.reducer;

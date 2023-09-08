@@ -34,8 +34,8 @@ export const abstractProduct = (data) => {
     abstractSku: data.abstractSku,
     price : data.price,
     abstractName: data.abstractName,
-    quantity:1,
-    image: data?.images[0]?.externalUrlLarge,
-    currency: data?.prices?.currency?.symbol || "$"
+    quantity: data?.quantity || 1,
+    image: data.image,
+    currency: data.currency || "$"
   }
 }
